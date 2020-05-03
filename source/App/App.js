@@ -11,7 +11,7 @@ export default function App (props) {
 
       <p className={styles.section + ' ' + styles.bio}>
         <Checkbox label='Check this!' checked={isDogOwner} onCheck={setIsDogOwner} />
-        <br />This person is {isDogOwner ? '' : 'not' } a dog owner;
+        <br />This person is {isDogOwner ? '' : 'not' } a dog owner
       </p>
     </React.Fragment>
   );

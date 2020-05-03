@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import css from './_Checkbox.scss';
 
 export default function Checkbox (props) {
   const onChange = (e) => {
-    console.log('e.target.value', e.target.checked);
     props.onCheck(e.target.checked);
   };
 
@@ -15,4 +15,10 @@ export default function Checkbox (props) {
       <span className={css.checkmark} />
     </label>
   );
+}
+
+Checkbox.propTypes = {
+  label: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
+  onCheck: PropTypes.func.isRequired
 }
