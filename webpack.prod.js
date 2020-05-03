@@ -1,6 +1,6 @@
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+var TerserPlugin = require('terser-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 
@@ -76,7 +76,8 @@ module.exports = {
     ]
   },
   optimization: {
-    minimize: false,
+    minimize: true,
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
         commons: {
@@ -91,14 +92,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new UglifyJSPlugin({
-      sourceMap: false
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static'
+    })
   ],
   externals: {
     react: {
